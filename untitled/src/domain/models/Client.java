@@ -5,6 +5,7 @@ import domain.enums.ClientType;
 import java.util.Objects;
 
 public class Client {
+
     private String identifier;
     private String fullName;
     private String email;
@@ -19,7 +20,7 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return identifier.equals(client.identifier);
+        return Objects.equals(identifier, client.identifier);
     }
 
     @Override
