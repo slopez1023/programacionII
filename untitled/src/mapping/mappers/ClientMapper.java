@@ -22,6 +22,6 @@ public class ClientMapper {
                 source.cellphone());
     }
     public static List<ClientDto> mapFrom(List<Client> source){
-        return source.stream().map(ClientMapper::mapFrom).collect(Collectors.toList());
+        return source.parallelStream().map(e->mapFrom(e)).toList();
     }
 }

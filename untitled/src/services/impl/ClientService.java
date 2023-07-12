@@ -11,4 +11,6 @@ public interface ClientService {
     String removeClient(String clientId);
     List<ClientDto> listAllClient();
     List<ClientDto> listAllByType(ClientType type);
+    double getDiscountByClient(String clientId);
+    String
 }

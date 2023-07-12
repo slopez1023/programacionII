@@ -4,12 +4,17 @@ import domain.enums.ClientType;
 import domain.models.Client;
 import mapping.dtos.ClientDto;
 import mapping.mappers.ClientMapper;
+import repository.ClientRepository;
 
 import java.util.ArrayList;
 
 import java.util.List;
 
 public class ClientRepositoryImpl implements ClientRepository {
+
+    private ClientRepository repository;
+
+
 
     List<Client> clients;
 
@@ -38,8 +43,8 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public String removeClient(String clientId) {
-        
-        return null;
+        clients.remove(findById(clientId));
+        return "User removed, new list: " + clients.toString();
     }
 
     @Override
@@ -49,8 +54,18 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public List<ClientDto> listAllByType(ClientType type) {
+        return clients.stream().filter(e-> e.getType().equals(type)).map(e -> ClientMapper.mapFrom(e)).toList();
+    }
+
+    @Override
+    public ClientDto getClient(String clientId) {
         return null;
     }
+
+    public  ClientDto findClientById(String clientId){
+        return ClientMapper.mapFrom(findById(clientId));
+    }
+
     private Client findById(String identifier){
         for(Client client: clients){
             if(client.getIdentifier().equalsIgnoreCase(identifier)){

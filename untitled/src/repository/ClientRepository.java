@@ -11,4 +11,7 @@ public interface ClientRepository {
     String removeClient(String clientId);
     List<ClientDto> listAllClient();
     List<ClientDto> listAllByType(ClientType type);
+    double getDiscountByClient(String clientId);
+
+    double findByClientId(String clientId);
 }
